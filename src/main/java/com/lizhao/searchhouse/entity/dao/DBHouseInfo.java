@@ -4,10 +4,12 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
+@Entity
 @Table(name = "house_info")
 @DynamicUpdate
 public class DBHouseInfo {

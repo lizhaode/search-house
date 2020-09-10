@@ -34,7 +34,6 @@ public class BeikeHouse {
             startPage += 1;
             stop = response.getData().getNoMoreData();
             for (HouseInfo info : response.getData().getList()) {
-                log.info("send");
                 redisTemplate.convertAndSend("bei_ke", om.writeValueAsString(info));
             }
         } while (stop != 1);

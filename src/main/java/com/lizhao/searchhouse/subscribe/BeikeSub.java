@@ -1,5 +1,6 @@
 package com.lizhao.searchhouse.subscribe;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lizhao.searchhouse.entity.beike.HouseInfo;
@@ -8,7 +9,6 @@ import com.lizhao.searchhouse.entity.dao.HouseInfoHistory;
 import com.lizhao.searchhouse.repository.HouseInfoHistoryRepository;
 import com.lizhao.searchhouse.repository.HouseInfoRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.lang.Nullable;
@@ -20,13 +20,16 @@ import java.io.IOException;
 @Component
 public class BeikeSub implements MessageListener {
 
-    private ObjectMapper om = new ObjectMapper();
+    private ObjectMapper om = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 
-    @Autowired
-    private HouseInfoRepository repository;
+    private final HouseInfoRepository repository;
 
-    @Autowired
-    private HouseInfoHistoryRepository infoRepository;
+    private final HouseInfoHistoryRepository infoRepository;
+
+    public BeikeSub(HouseInfoRepository repository, HouseInfoHistoryRepository infoRepository) {
+        this.repository = repository;
+        this.infoRepository = infoRepository;
+    }
 
     @Override
     public void onMessage(Message message, @Nullable byte[] pattern) {
@@ -50,13 +53,14 @@ public class BeikeSub implements MessageListener {
             db.setSaleStatus(info.getSaleStatus());
             db.setStreet(info.getBizCircleName());
             db.setTotalPrice(info.getTotalPriceStart());
-            db.setUrl(info.getUrl());
+            db.setUrl("https://tj.fang.ke.com" + info.getUrl());
 
             // 如果数据库里边有数据，就更新，并且记录 history 表
             DBHouseInfo dataInDB = this.repository.findByHouseName(info.getTitle());
             if (dataInDB == null) {
                 this.repository.save(db);
             } else {
+                db.setId(dataInDB.getId());
                 this.repository.save(db);
                 this.infoRepository.save(this.checkDifferent(dataInDB, db));
             }

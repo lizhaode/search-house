@@ -20,6 +20,6 @@ feign:
 
 spring:
   redis:
-    url: redis://${user}:${password}@${host}:${redis_port}
+    url: ${REDIS_URL}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

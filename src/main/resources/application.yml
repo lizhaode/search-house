@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8080}
+
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:
+        loggerLevel: full
+        requestInterceptors:
+          - com.lizhao.searchhouse.config.RequestInterceptor
+#logging:
+#  level:
+#    com:
+#      lizhao: debug
+
+
+spring:
+  redis:
+    url: redis://${user}:${password}@${host}:${redis_port}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver

@@ -26,5 +26,6 @@ spring:
     password: ${passowrd}
     hikari:
       maximum-pool-size: 3
+      max-lifetime: 60000
   jpa:
     open-in-view: false

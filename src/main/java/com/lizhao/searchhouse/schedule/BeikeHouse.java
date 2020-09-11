@@ -116,7 +116,7 @@ public class BeikeHouse {
         if (oldInfo.equals(newInfo)) {
             return null;
         } else {
-            return newInfo;
+            return oldInfo;
         }
     }
 

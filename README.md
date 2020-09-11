@@ -10,7 +10,7 @@
 
 使用 Heroku
 
-开通 Heroku 的 redis，JawsDB 的 MySQL
+开通 JawsDB 的 MySQL
 
 修改环境变量中 MySQL 的连接信息
 

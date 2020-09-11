@@ -12,10 +12,10 @@ feign:
         loggerLevel: full
         requestInterceptors:
           - com.lizhao.searchhouse.config.RequestInterceptor
-#logging:
-#  level:
-#    com:
-#      lizhao: debug
+logging:
+  level:
+    com:
+      lizhao: debug
 
 
 spring:

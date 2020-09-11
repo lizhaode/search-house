@@ -26,6 +26,9 @@ spring:
     password: ${passowrd}
     hikari:
       maximum-pool-size: 3
-      max-lifetime: 60000
+      max-lifetime: 600000
+    tomcat:
+      test-on-borrow: true
+      validation-query: select `id` from house_info limit 1
   jpa:
     open-in-view: false

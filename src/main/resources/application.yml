@@ -14,16 +14,14 @@ feign:
           - com.lizhao.searchhouse.config.RequestInterceptor
 logging:
   level:
-    com:
-      lizhao: debug
+    org:
+      hibernate: off
 
 
 spring:
-  redis:
-    url: ${REDIS_URL}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://xxxxx:10048/t66y
+    url: jdbc:mysql://${host}:${mysql_port}}/search_house
     username: root
     password: ${passowrd}
     hikari:

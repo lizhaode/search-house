@@ -16,7 +16,8 @@ logging:
   level:
     org:
       hibernate: off
-
+      apache:
+        tomcat: debug
 
 spring:
   datasource:
@@ -27,5 +28,8 @@ spring:
     hikari:
       maximum-pool-size: 3
       max-lifetime: 1800000
+    tomcat:
+      validation-query: /* ping */
+      test-while-idle: true
   jpa:
     open-in-view: false

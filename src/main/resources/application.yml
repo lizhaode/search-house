@@ -19,6 +19,8 @@ logging:
   level:
     org:
       hibernate: off
+    com:
+      zaxxer: error
 
 spring:
   datasource:
@@ -28,9 +30,6 @@ spring:
     password: ${passowrd}
     hikari:
       maximum-pool-size: 3
-      max-lifetime: 1800000
-    tomcat:
-      validation-query: /* ping */
-      test-while-idle: true
+      max-lifetime: 600000
   jpa:
     open-in-view: false

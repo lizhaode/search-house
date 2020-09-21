@@ -1,8 +1,5 @@
 server:
   port: ${PORT:8080}
-  tomcat:
-    threads:
-      max: 3
 
 feign:
   httpclient:

@@ -38,6 +38,7 @@ public class BeikeHouse {
         int stop;
         int startPage = 1;
         BaseResponse response;
+        log.info("start");
         do {
             response = this.client.houseWithPage(startPage);
             startPage += 1;
@@ -46,6 +47,7 @@ public class BeikeHouse {
                 this.handleResponse(info);
             }
         } while (stop != 1);
+        log.info("end");
     }
 
     private void handleResponse(HouseInfo info) {

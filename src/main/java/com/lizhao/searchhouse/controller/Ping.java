@@ -11,7 +11,6 @@ public class Ping {
 
     @GetMapping("/ping")
     public ResponseEntity<String> ping() {
-        log.info("receive ping");
         return ResponseEntity.ok("success");
     }
 }

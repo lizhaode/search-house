@@ -16,17 +16,18 @@ logging:
   level:
     org:
       hibernate: off
-    com:
-      zaxxer: error
 
 spring:
   datasource:
+    tomcat:
+      validation-query: /* ping */
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: true
+      test-on-connect: true
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${host}:${mysql_port}}/search_house
     username: root
     password: ${passowrd}
-    hikari:
-      maximum-pool-size: 3
-      max-lifetime: 600000
   jpa:
     open-in-view: false

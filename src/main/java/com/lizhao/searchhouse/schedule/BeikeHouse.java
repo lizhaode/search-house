@@ -24,7 +24,7 @@ public class BeikeHouse {
 
     private final HouseInfoHistoryRepository historyRepository;
 
-    private ObjectMapper om = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    private final ObjectMapper om = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
     public BeikeHouse(BeiKeFeignClient client, HouseInfoRepository infoRepository, HouseInfoHistoryRepository historyRepository) {
         this.client = client;
